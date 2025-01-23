@@ -29,7 +29,7 @@ export default function SignIn() {
     if (res?.error) {
       setError("Invalid email or password") // Show error message
     } else {
-      router.push("/dashboard") // Redirect to home or dashboard after successful sign-in
+      router.push("/newhome") // Redirect to home or dashboard after successful sign-in
     }
   }
 

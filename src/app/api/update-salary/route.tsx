@@ -1,51 +1,24 @@
-// import { NextResponse } from "next/server";
-// import { PrismaClient } from "@prisma/client";
-// import { getServerSession } from "next-auth"; // Import getServerSession from next-auth
-// import { authOptions } from "@/app/api/auth/[...nextauth]";  // Adjust the import path as needed
-
-// const prisma = new PrismaClient();
-
-// export async function POST(req: Request) {
-//   // Get the session from the request
-//   const session = await getServerSession(authOptions);
-
-//   // Check if there is no session or the user is not authenticated
-//   if (!session || !session.user || !session.user.id) {
-//     return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-//   }
-
-//   // Parse the request body
-//   const { salary } = await req.json();
-
-//   // Update the user's salary in the database using the session user ID
-//   const updatedUser = await prisma.user.update({
-//     where: { id: parseInt(session.user.id) }, // Ensure the user ID is parsed as an integer
-//     data: { income: salary },
-//   });
-
-//   // Return the updated salary
-//   return NextResponse.json({ salary: updatedUser.income });
-// }
-
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
+    console.log(req.body + 'reqest rec');
   try {
     // Parse and log the request body
     const body = await req.json();
 
-    // Ensure the body is not null and contains salary
-    if (!body || body.salary === undefined) {
-      return NextResponse.json({ error: "Missing salary in request" }, { status: 400 });
+    // Ensure the body contains userId and salary
+    if (!body || body.userId === undefined || body.salary === undefined) {
+      return NextResponse.json({ error: "Missing userId or salary in request" }, { status: 400 });
     }
 
-    let { salary } = body;
+    let { userId, salary } = body;
 
     // Parse salary to a number
     salary = Number(salary);
+    userId = Number(userId);
 
     // Validate salary as a number
     if (isNaN(salary) || salary <= 0) {
@@ -54,7 +27,7 @@ export async function POST(req: Request) {
 
     // Update the user's salary
     const updatedUser = await prisma.user.update({
-      where: { id: 2 }, // Use dynamic user ID if necessary
+      where: { id: userId }, // Use dynamic userId from the request body
       data: { income: salary }, // Use the validated and parsed salary
     });
 
@@ -64,4 +37,3 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Failed to update salary" }, { status: 500 });
   }
 }
-
