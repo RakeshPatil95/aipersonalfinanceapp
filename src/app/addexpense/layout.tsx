@@ -26,8 +26,8 @@ export default function AddExpensesLayout({
                 }
             )}
         >
-        {/* Header */}
-        <Header userName="Rakesh" />
+        {/* Header
+        <Header userName="Rakesh" /> */}
         
         {/* Main Layout */}
         <div className="flex flex-row flex-1">

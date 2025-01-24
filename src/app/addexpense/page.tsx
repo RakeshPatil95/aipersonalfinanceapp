@@ -22,36 +22,34 @@ export default function AddExpense() {
     setUserId(searchParams.get("userId"));
   }, []);
 
-  // Fetch total expenses on component mount
   useEffect(() => {
+    let isMounted = true;
+  
     const fetchExpenses = async () => {
       if (!userId) return;
-
+  
       try {
-        const res = await fetch(`/api/get-expenses?userId=${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (res.ok) {
+        const res = await fetch(`/api/get-expenses?userId=${userId}`);
+        if (res.ok && isMounted) {
           const data = await res.json();
           const total = data.expenses.reduce(
             (sum: number, expense: { amount: number }) => sum + expense.amount,
             0
           );
           setTotalExpenses(total);
-        } else {
-          console.error("Failed to fetch expenses");
         }
       } catch (error) {
         console.error("Error fetching expenses:", error);
       }
     };
-
+  
     fetchExpenses();
+  
+    return () => {
+      isMounted = false; // Prevent state updates after unmounting
+    };
   }, [userId]);
+  
 
   const addExpense = async () => {
     if (amount === "" || amount <= 0) {
