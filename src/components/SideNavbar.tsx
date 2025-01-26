@@ -10,6 +10,7 @@ import {
   UsersRound,
   Settings,
   ChevronRight,
+  Brain,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { useWindowWidth } from "@react-hook/window-size";
@@ -60,14 +61,14 @@ export default function SideNavbar({}: Props) {
             variant: "ghost",
           },
           {
-            title: "Orders",
-            href: "/pages/orders",
-            icon: ShoppingCart,
+            title: "AI Suggestions",
+            href: "/pages/aisuggestions",
+            icon: Brain,
             variant: "ghost",
           },
           {
             title: "Settings",
-            href: "/settings",
+            href: "/pages/dashboard",
             icon: Settings,
             variant: "ghost",
           },
