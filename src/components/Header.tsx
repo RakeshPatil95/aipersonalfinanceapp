@@ -9,8 +9,8 @@ interface HeaderProps {
 export default function Header({ userName }: HeaderProps) {
     // Handle sign-out
     const handleSignOut = async () => {
-        await fetch("/signout", { method: "POST" });
-        window.location.href = "/signin"; // Redirect to the signin page
+        await fetch("/pages/signout", { method: "POST" });
+        window.location.href = "/pages/signin"; // Redirect to the signin page
     };
 
     return (

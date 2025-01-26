@@ -60,7 +60,6 @@ export default function AddExpense() {
     const expenseData = {
       userId: Number(userId),
       amount: Number(amount),
-      date: new Date(),
       description: isCustomCategory ? customCategory : category,
     };
 

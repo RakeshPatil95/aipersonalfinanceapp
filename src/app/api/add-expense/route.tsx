@@ -8,14 +8,11 @@ const prisma = new PrismaClient();
 export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
-      const { userId, amount, description, date } = await req.json();
+      const { userId, amount, description } = await req.json();
 
       if (!userId || !amount || !description) {
         return NextResponse.json({ error: "Invalid or missing userId" }, { status: 400 });
       }
-
-      const expenseDate = date ? new Date(date) : new Date().toISOString();
-
       // Get the total expenses for the user
       const totalExpenses = await prisma.expense.aggregate({
         where: { userId: Number(userId) },
