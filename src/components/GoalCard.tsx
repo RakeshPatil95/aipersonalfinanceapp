@@ -78,7 +78,7 @@ export default function GoalCard({ userId }: GoalCardProps) {
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      alert(`Unexpected error: ${error.message}`);
+      alert(`Unexpected error: ${error}`);
     }
   };
 
