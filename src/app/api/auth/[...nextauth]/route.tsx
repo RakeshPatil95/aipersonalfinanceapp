@@ -1,9 +1,7 @@
-import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { NextApiRequest, NextApiResponse } from 'next';
-import { compare } from 'bcryptjs'; // Compare hashed password
 import { PrismaClient } from '@prisma/client'; // Import PrismaClient
-import { AuthOptions } from 'next-auth';
+import { compare } from 'bcryptjs'; // Compare hashed password
+import NextAuth, { AuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 // Initialize Prisma Client
 const prisma = new PrismaClient();
@@ -74,6 +72,9 @@ const authOptions: AuthOptions = {
   },
 };
 
-// Named exports for GET and POST requests
-export const GET = (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, authOptions);
-export const POST = (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, authOptions);
+// API route handlers using app directory
+const handler = NextAuth(authOptions);
+
+// Export GET and POST methods
+export { handler as GET, handler as POST };
+
