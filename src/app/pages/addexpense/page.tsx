@@ -36,6 +36,7 @@ export default function AddExpense() {
             (sum: number, expense: { amount: number }) => sum + expense.amount,
             0
           );
+          console.log(total + 'from db 2')
           setTotalExpenses(total);
         }
       } catch (error) {

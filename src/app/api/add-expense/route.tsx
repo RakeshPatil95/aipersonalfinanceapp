@@ -11,8 +11,18 @@ export async function POST(req: Request) {
       const { userId, amount, description } = await req.json();
 
       if (!userId || !amount || !description) {
-        return NextResponse.json({ error: "Invalid or missing userId" }, { status: 400 });
+        return NextResponse.json({ error: "Invalid or missing fields" }, { status: 400 });
       }
+
+      // Create the new expense
+      const newExpense = await prisma.expense.create({
+        data: {
+          userId: Number(userId),
+          amount: Number(amount),
+          description,
+        },
+      });
+
       // Get the total expenses for the user
       const totalExpenses = await prisma.expense.aggregate({
         where: { userId: Number(userId) },
@@ -21,7 +31,10 @@ export async function POST(req: Request) {
         },
       });
 
-      return NextResponse.json({ totalExpenses: totalExpenses._sum.amount });
+      return NextResponse.json({ 
+        expense: newExpense,
+        totalExpenses: totalExpenses._sum.amount 
+      });
     } catch (error) {
       console.error("Error adding expense:", error);
       return NextResponse.json({ error: "Failed to add expense" }, { status: 500 });
