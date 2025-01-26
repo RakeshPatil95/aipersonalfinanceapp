@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:manager@localhost:3306/finance_app"
+  url      = env("DATABASE_URL")
 }
 
 model User {

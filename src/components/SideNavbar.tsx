@@ -1,23 +1,20 @@
 /** @format */
 "use client";
 
-import { useState } from "react";
-import { Nav } from "./ui/nav";
-import { useSession } from "next-auth/react"; // Import session hook
-import {
-  ShoppingCart,
-  LayoutDashboard,
-  UsersRound,
-  Settings,
-  ChevronRight,
-  Brain,
-} from "lucide-react";
-import { Button } from "./ui/button";
 import { useWindowWidth } from "@react-hook/window-size";
+import {
+    Brain,
+    ChevronRight,
+    LayoutDashboard,
+    Settings,
+    UsersRound
+} from "lucide-react";
+import { useSession } from "next-auth/react"; // Import session hook
+import { useState } from "react";
+import { Button } from "./ui/button";
+import { Nav } from "./ui/nav";
 
-type Props = {};
-
-export default function SideNavbar({}: Props) {
+export default function SideNavbar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const onlyWidth = useWindowWidth();
@@ -62,7 +59,7 @@ export default function SideNavbar({}: Props) {
           },
           {
             title: "AI Suggestions",
-            href: "/pages/aisuggestions",
+            href: "/pages/AISuggestions",
             icon: Brain,
             variant: "ghost",
           },

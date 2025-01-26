@@ -9,8 +9,11 @@ const prisma = new PrismaClient();
 export async function POST(req: Request) {
   try {
     // Parse incoming data
-    let { userId, goalAmount, goalDescription, targetDate } = await req.json();
-
+    const body = await req.json();
+    let userId = body.userId;
+    let goalAmount = body.goalAmount;
+    const goalDescription = body.goalDescription;
+    const targetDate = body.targetDate;
     // Validate the incoming data
     if (!userId || !goalAmount || !goalDescription || !targetDate) {
       return NextResponse.json({ error: "Invalid or missing userId" }, { status: 400 });

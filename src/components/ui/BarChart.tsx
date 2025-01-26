@@ -1,15 +1,12 @@
 /** @format */
 "use client";
-import React from "react";
 import {
+    Bar,
     BarChart as BarGraph,
     ResponsiveContainer,
     XAxis,
-    YAxis,
-    Bar
+    YAxis
 } from "recharts";
-
-type Props = {};
 
 const data = [
     {
@@ -62,7 +59,7 @@ const data = [
     }
 ];
 
-export default function BarChart({}: Props) {
+export default function BarChart() {
     return (
         <ResponsiveContainer width={"100%"} height={350}>
             <BarGraph data={data}>

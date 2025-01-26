@@ -1,10 +1,10 @@
 'use client';
 /** @format */
 
-import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useEffect, useState } from "react";
 
 export default function AddExpense() {
   const [userId, setUserId] = useState<string | null>(null);
@@ -74,7 +74,6 @@ export default function AddExpense() {
       });
 
       if (res.ok) {
-        const data = await res.json();
         setTotalExpenses((prev) => prev + Number(amount)); // Update total expenses state
         alert("Expense added successfully!");
         setAmount("");

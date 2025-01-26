@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 export async function POST(req: Request) {
   if (req.method === "POST") {
     try {
-      let { userId, amount, description, date } = await req.json();
+      const { userId, amount, description, date } = await req.json();
 
       if (!userId || !amount || !description) {
         return NextResponse.json({ error: "Invalid or missing userId" }, { status: 400 });

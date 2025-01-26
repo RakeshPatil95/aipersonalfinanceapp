@@ -1,15 +1,13 @@
 'use client';
 
-import { useSession } from 'next-auth/react'; // Import the useSession hook
-import Card, { CardContent, CardProps } from "@/components/Card";
-import MonthExpenseCard from "@/components/MonthlyExpenseCard";
-import MonthlyBalanceCard from "@/components/MonthlyBalanceCard";
-import PageTitle from "@/components/PageTitle";
-import BarChart from "@/components/ui/BarChart";
-import SalesCard, { SalesProps } from "@/components/ui/SalesCard";
-import TotalSavingsCard from "@/components/TotalSavingsCard";
+import { CardContent } from "@/components/Card";
 import GoalCard from '@/components/GoalCard';
+import MonthlyBalanceCard from "@/components/MonthlyBalanceCard";
+import MonthExpenseCard from "@/components/MonthlyExpenseCard";
 import { RecentSpends } from '@/components/RecentSpends';
+import TotalSavingsCard from "@/components/TotalSavingsCard";
+import BarChart from "@/components/ui/BarChart";
+import { useSession } from 'next-auth/react'; // Import the useSession hook
 
 export default function Dashboard() {
   const { data: session, status } = useSession(); // Get session data
