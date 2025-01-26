@@ -16,20 +16,6 @@ export async function POST(req: Request) {
 
       const expenseDate = date ? new Date(date) : new Date().toISOString();
 
-      // Add new expense to the database
-      const newExpense = await prisma.expense.create({
-        data: {
-          amount,
-          date: expenseDate,
-          description,
-          user:{
-            connect:{
-              id: userId
-            }
-          }
-        },
-      });
-
       // Get the total expenses for the user
       const totalExpenses = await prisma.expense.aggregate({
         where: { userId: Number(userId) },
