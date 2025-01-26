@@ -45,7 +45,7 @@ model user {
   password String
   income   Float
   name     String
-  budget   budget[]
+  budgets   budget[]
   expenses  expense[]
-  goal     goal[]
+  goals     goal[]
 }
