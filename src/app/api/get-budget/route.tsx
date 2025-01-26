@@ -22,7 +22,7 @@ export async function GET(req: Request) {
         });
 
         if (!budget) {
-            return NextResponse.json({ error: "Budget Not Found for the User" }, { status: 404 });
+            return NextResponse.json({ budgetLimit: 0 });
         }
 
         return NextResponse.json({ budgetLimit: budget.limit });

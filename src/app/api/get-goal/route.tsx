@@ -25,7 +25,7 @@ export async function GET(req: Request) {
       },
     });
     if (!goal) {
-      return NextResponse.json({ error: "Goal not found for the user" }, { status: 404 });
+      return NextResponse.json({ goalAmount: 0, goalDescription: "", targetDate: "" });
     }
 
     return NextResponse.json({

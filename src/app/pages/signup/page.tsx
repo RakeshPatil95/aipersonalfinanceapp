@@ -80,7 +80,7 @@ export default function SignUpPage() {
       });
 
       // Redirect to the signin page after successful signup
-      router.push("/signin");
+      router.push("/pages/signin");
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error: unknown) {
       toast({

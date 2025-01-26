@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -12,9 +12,9 @@ model budget {
   category String
   limit    Float
   userId   Int
-  user     user   @relation(fields: [userId], references: [id], map: "Budget_userId_fkey")
+  user     user   @relation(fields: [userId], references: [id], map: "budget_user_fkey")
 
-  @@index([userId], map: "Budget_userId_fkey")
+  @@index([userId], map: "budget_user_idx")
 }
 
 model expense {
@@ -23,9 +23,9 @@ model expense {
   description String
   date        DateTime @default(now())
   userId      Int
-  user        user     @relation(fields: [userId], references: [id], map: "Expense_userId_fkey")
+  user        user     @relation(fields: [userId], references: [id], map: "expense_user_fkey")
 
-  @@index([userId], map: "Expense_userId_fkey")
+  @@index([userId], map: "expense_user_idx")
 }
 
 model goal {
@@ -34,9 +34,9 @@ model goal {
   targetDate  DateTime
   amount      Float
   userId      Int
-  user        user     @relation(fields: [userId], references: [id], map: "Goal_userId_fkey")
+  user        user     @relation(fields: [userId], references: [id], map: "goal_user_fkey")
 
-  @@index([userId], map: "Goal_userId_fkey")
+  @@index([userId], map: "goal_user_idx")
 }
 
 model user {

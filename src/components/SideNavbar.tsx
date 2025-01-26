@@ -59,7 +59,7 @@ export default function SideNavbar() {
           },
           {
             title: "AI Suggestions",
-            href: "/pages/AISuggestions",
+            href: "/pages/aisuggestions",
             icon: Brain,
             variant: "ghost",
           },
