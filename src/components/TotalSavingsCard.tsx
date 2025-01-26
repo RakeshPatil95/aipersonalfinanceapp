@@ -48,23 +48,21 @@ export default function TotalSavingsCard({ userId }: TotalSavingsCardProps) {
   return (
     <div>
       <Card className="flex flex-col justify-between items-center p-4 w-full h-full border border-gray-200 rounded-lg shadow-sm">
-        <CardHeader>
+      <CardHeader className="text-center">
           <CardTitle>Total Savings</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col justify-center items-center gap-4">
+        <CardContent className="flex justify-center items-center p-8">
           {loading ? (
             <p className="text-gray-500">Loading...</p>
           ) : error ? (
-            <p className="text-red-500">error</p>
+            <p className="text-red-500">Error</p>
           ) : (
             <p
-              className={`text-xl font-semibold ${
-                savings !== null && savings >= 0
-                  ? "text-green-500"
-                  : "text-red-500"
+              className={`text-4xl md:text-5xl font-bold ${
+                savings !== null && savings >= 0 ? "text-green-500" : "text-red-500"
               }`}
             >
-              Total Savings: ₹{savings !== null ? savings : "N/A"}
+              ₹{savings !== null ? savings.toLocaleString() : "N/A"}
             </p>
           )}
         </CardContent>

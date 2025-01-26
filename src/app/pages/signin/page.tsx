@@ -29,7 +29,7 @@ export default function SignIn() {
     if (res?.error) {
       setError("Invalid email or password") // Show error message
     } else {
-      router.push("/newhome") // Redirect to home or dashboard after successful sign-in
+      router.push("/pages/newhome") // Redirect to home or dashboard after successful sign-in
     }
   }
 
@@ -70,7 +70,7 @@ export default function SignIn() {
           </form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <Button variant="link" className="p-0" onClick={() => window.location.href = '/signup'}>
+            <Button variant="link" className="p-0" onClick={() => window.location.href = '/pages/signup'}>
               Sign up
             </Button>
           </div>

@@ -48,20 +48,20 @@ export default function SideNavbar({}: Props) {
         links={[
           {
             title: "Dashboard",
-            href: "/newhome",
+            href: "/pages/dashboard",
             icon: LayoutDashboard,
             variant: "default",
           },
           {
             title: "Add Expense",
             // Pass userId to the Add Expense route
-            href: `/addexpense?userId=${userId}`,
+            href: `/pages/addexpense?userId=${userId}`,
             icon: UsersRound,
             variant: "ghost",
           },
           {
             title: "Orders",
-            href: "/orders",
+            href: "/pages/orders",
             icon: ShoppingCart,
             variant: "ghost",
           },

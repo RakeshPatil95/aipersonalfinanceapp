@@ -2,48 +2,52 @@
 /** @format */
 
 import { Inter } from "next/font/google";
-import { SessionProvider } from "next-auth/react"
+import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import "./globals.css";
-import NewHomeLayout from "@/app/newhome/layout"; // Import custom layout
-import { cn } from "../lib/utils";
+import SideNavbar from "@/components/SideNavbar";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
-                                       children,
-                                   }: {
-    children: React.ReactNode;
+  children,
+}: {
+  children: React.ReactNode;
 }) {
-    // Get the current route
-    const pathname = usePathname();
+  // Get the current route
+  const pathname = usePathname();
 
-    // Check if the route is "/dashboard" or a sub-route of "/dashboard"
-    const isDashboardRoute = pathname.startsWith("/newhome");
+  // Define routes where Header and Sidebar should NOT be displayed
+  const noLayoutRoutes = ["/", "/pages/signin", "/pages/signup", "/pages/signout"];
 
-    return (
-        <html lang="en">
-            <SessionProvider>
-        <body
-            className={cn(
-                "min-h-screen w-full bg-white text-black flex flex-col",
-                inter.className,
-                {
-                    "debug-screens": process.env.NODE_ENV === "development",
-                }
+  // Determine if Header and Sidebar should be hidden
+  const shouldHideHeaderAndSidebar = noLayoutRoutes.includes(pathname);
+
+  return (
+    <html lang="en" className={inter.className}>
+      <SessionProvider>
+        <body className="min-h-screen">
+          <div className="flex flex-col h-screen">
+            {!shouldHideHeaderAndSidebar && (
+                <div className="w-full">
+              <Header userName="Rakesh"/>
+                </div>
             )}
-        >
-        {isDashboardRoute ? (
-            // Use DashboardLayout for "/dashboard" routes
-            <NewHomeLayout>{children}</NewHomeLayout>
-        ) : (
-            // Default layout for other routes
-            <div className="flex flex-col">
+            
+            <div className="flex flex-1 h-[calc(100vh-64px)]"> {/* Adjust 64px based on your header height */}
+              {!shouldHideHeaderAndSidebar && (
+                <div className="h-full">
+                <SideNavbar/>
+                </div>
+              )}
+              <main className={`flex-1 ${shouldHideHeaderAndSidebar ? "w-full" : "p-8"}`}>
                 {children}
+              </main>
             </div>
-        )}
+          </div>
         </body>
-        </SessionProvider>
-        </html>
-    );
+      </SessionProvider>
+    </html>
+  );
 }

@@ -90,8 +90,8 @@ export default function AddExpense() {
   };
 
   return (
-    <div>
-      <Card className="p-4 w-full max-w-xl mx-auto">
+    <div className="flex flex-col gap-5 w-full">
+      <Card>
         <CardHeader>
           <CardTitle>Add Expense</CardTitle>
         </CardHeader>

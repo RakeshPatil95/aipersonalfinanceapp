@@ -7,7 +7,6 @@ import { NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 export async function GET(req: Request) {
-  console.log("rakesh");
   try {
     // Parse userId from the query parameters
     const { searchParams } = new URL(req.url || "");
@@ -25,7 +24,6 @@ export async function GET(req: Request) {
         targetDate: true,
       },
     });
-    console.log(goal)
     if (!goal) {
       return NextResponse.json({ error: "Goal not found for the user" }, { status: 404 });
     }

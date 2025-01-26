@@ -160,7 +160,7 @@ export default function SignUpPage() {
                 <Button
                   type="button"
                   variant="link"
-                  onClick={() => router.push("/signin")}
+                  onClick={() => router.push("/pages/signin")}
                 >
                   Already have an account? Log in
                 </Button>

@@ -65,7 +65,7 @@ export default function MonthlyBalanceCard({ userId }: MonthlyBalanceCardProps) 
       }
     } catch (error) {
       console.error("Unexpected error:", error);
-      alert(`Unexpected error: ${error.message}`);
+      alert(`Unexpected error: ${error}`);
     }
   };
 
