@@ -1,12 +1,12 @@
 'use client';
 /** @format */
 
-import { Inter } from "next/font/google";
+import Header from "@/components/Header";
+import SideNavbar from "@/components/SideNavbar";
 import { SessionProvider } from "next-auth/react";
+import { Inter } from "next/font/google";
 import { usePathname } from "next/navigation";
 import "./globals.css";
-import SideNavbar from "@/components/SideNavbar";
-import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +31,7 @@ export default function RootLayout({
           <div className="flex flex-col h-screen">
             {!shouldHideHeaderAndSidebar && (
                 <div className="w-full">
-              <Header userName="Rakesh"/>
+              <Header/>
                 </div>
             )}
             

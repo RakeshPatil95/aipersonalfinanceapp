@@ -26,7 +26,7 @@ export async function GET(req: Request) {
       orderBy: {
         date: 'desc'
       },
-      take: 5  // Changed from 10 to 5
+      take: 4  // Changed from 10 to 5
     });
 
     // Calculate total spent

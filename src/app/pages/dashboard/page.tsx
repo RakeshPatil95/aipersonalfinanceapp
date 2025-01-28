@@ -1,12 +1,10 @@
 'use client';
 
-import { CardContent } from "@/components/Card";
+import BarChartCard from "@/components/BarChartCard";
 import GoalCard from '@/components/GoalCard';
 import MonthlyBalanceCard from "@/components/MonthlyBalanceCard";
 import MonthExpenseCard from "@/components/MonthlyExpenseCard";
-import { RecentSpends } from '@/components/RecentSpends';
 import TotalSavingsCard from "@/components/TotalSavingsCard";
-import BarChart from "@/components/ui/BarChart";
 import { useSession } from 'next-auth/react'; // Import the useSession hook
 
 export default function Dashboard() {
@@ -31,14 +29,7 @@ export default function Dashboard() {
         <MonthlyBalanceCard userId={session.user.id}/>
         <MonthExpenseCard userId={session.user.id}/>
       </section>
-
-      <section className="grid grid-cols-1 gap-4 transition-all lg:grid-cols-2">
-        <CardContent>
-          <p className="p-4 font-semibold">Overview</p>
-          <BarChart />
-        </CardContent>
-      <RecentSpends/>
-      </section>
+      <BarChartCard userId={session.user.id}/>
     </div>
   );
 }

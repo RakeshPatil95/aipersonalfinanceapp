@@ -1,12 +1,15 @@
 'use client';
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 
 interface HeaderProps {
     userName: string;
 }
 
 // Header Component
-export default function Header({ userName }: HeaderProps) {
+export default function Header() {
+    const { data: session } = useSession();
+    const userName = session?.user?.name;
     // Handle sign-out
     const handleSignOut = async () => {
         await fetch("/pages/signout", { method: "POST" });
